@@ -31,13 +31,25 @@ Esta API Node.js com TypeScript é construída com o padrão N-Layer para organi
 A arquitetura segue o padrão **N-Layer** (ou multi-camadas), onde cada camada possui uma responsabilidade específica, conforme o diagrama:
 
 ```
-Presentation Layer      <-- (Express - Controladores e Rotas)
-         |
-Application Layer       <-- (Serviços - Lógica de Negócios)
-         |
-Data Access Layer       <-- (Repositórios - Acesso ao Banco de Dados)
-         |
-Data Layer              <-- (Modelos - Estrutura de Dados)
+config       <-- Configurações globais do projeto, como banco de dados, variáveis de ambiente, etc.
+  |
+controller   <-- Controladores que recebem requisições HTTP, chamam serviços e retornam respostas.
+  |
+dependency   <-- Gerencia dependências externas, como bibliotecas e integrações de terceiros.
+  |
+docs         <-- Documentação do projeto, incluindo documentação da API, guias de instalação e outros.
+  |
+interface    <-- Interfaces e tipos TypeScript para definir contratos e facilitar a comunicação entre camadas.
+  |
+middleware   <-- Middlewares do Express, aplicados entre as requisições e os controladores para tratar segurança, autenticação, etc.
+  |
+model        <-- Modelos de dados que representam a estrutura das tabelas no banco de dados e contêm validações de dados.
+  |
+repository   <-- Camada de acesso ao banco de dados que encapsula operações CRUD e abstrai a lógica de dados.
+  |
+routes       <-- Definição de rotas que vinculam endpoints HTTP aos controladores apropriados.
+  |
+service      <-- Camada de serviços onde está a lógica de negócios, validações e regras de manipulação de dados.
 ```
 
 Cada camada interage apenas com a camada diretamente inferior, mantendo a organização e separação de responsabilidades.
