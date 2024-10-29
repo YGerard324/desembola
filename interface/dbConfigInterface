@@ -1,0 +1,8 @@
+interface DBConfig {
+    HOST: string;
+    USERNAME: string;
+    PASSWORD: string;
+    DB: string;
+    PORT: string;
+    DIALECT: 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql';
+  }
