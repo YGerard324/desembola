@@ -37,7 +37,7 @@ app.use("/api/team", isAuth, teamRouter);
 // Rotas públicas
 app.use("/api/auth", authRouter);
 
-app.use(axios)
+axios
 
 app.listen(port, () => {
   console.log(`Servidor rodando em http://44.226.122.3:${port}`);
