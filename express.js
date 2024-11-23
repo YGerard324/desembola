@@ -20,21 +20,34 @@ const port = 3000;
 app.use(express.json());
 
 // Rotas protegidas com autenticação
-app.use("/user", isAuth, userRouter);
-app.use("/address", isAuth, addressRouter);
-app.use("/student", isAuth, studentRouter);
-app.use("/family", isAuth, familyRouter);
-app.use("/teacher", isAuth, teacherRouter);
-app.use("/class", isAuth, classRouter);
-app.use("/lesson", isAuth, lessonRouter);
-app.use("/exam", isAuth, examRouter);
-app.use("/discipline", isAuth, disciplineRouter);
-app.use("/ranking", isAuth, rankingRouter);
-app.use("/status", isAuth, statusRouter);
-app.use("/team", isAuth, teamRouter);
+app.use("/api/user", isAuth, userRouter);
+app.use("/api/address", isAuth, addressRouter);
+app.use("/api/student", isAuth, studentRouter);
+app.use("/api/family", isAuth, familyRouter);
+app.use("/api/teacher", isAuth, teacherRouter);
+app.use("/api/class", isAuth, classRouter);
+app.use("/api/lesson", isAuth, lessonRouter);
+app.use("/api/exam", isAuth, examRouter);
+app.use("/api/discipline", isAuth, disciplineRouter);
+app.use("/api/ranking", isAuth, rankingRouter);
+app.use("/api/status", isAuth, statusRouter);
+app.use("/api/team", isAuth, teamRouter);
 
 // Rotas públicas
-app.use("/auth", authRouter);
+app.use("/api/auth", authRouter);
+
+const axios = require('axios');
+
+async function getPublicIP() {
+    try {
+        const response = await axios.get('https://api.ipify.org?format=json');
+        console.log(`Seu IP público é: ${response.data.ip}`);
+    } catch (error) {
+        console.error('Erro ao obter o IP público:', error);
+    }
+}
+
+getPublicIP();
 
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
