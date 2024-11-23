@@ -16,7 +16,7 @@ const isAuth = require("./middleware/IsAuth");
 const axios = require("./middleware/axios")
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
@@ -37,9 +37,6 @@ app.use("/api/team", isAuth, teamRouter);
 // Rotas públicas
 app.use("/api/auth", authRouter);
 
-axios
-
-app.listen(port, () => {
-  console.log(`Servidor rodando em http://44.226.122.3:${port}`);
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Servidor rodando na porta ${port}`);
 });
-
