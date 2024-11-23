@@ -13,6 +13,7 @@ const rankingRouter = require("./routes/RankingRouter");
 const statusRouter = require("./routes/StatusRouter");
 const teamRouter = require("./routes/TeamRouter");
 const isAuth = require("./middleware/IsAuth");
+const axios = require("./middleware/axios")
 
 const app = express();
 const port = 3000;
@@ -36,19 +37,8 @@ app.use("/api/team", isAuth, teamRouter);
 // Rotas públicas
 app.use("/api/auth", authRouter);
 
-const axios = require('axios');
-
-async function getPublicIP() {
-    try {
-        const response = await axios.get('https://api.ipify.org?format=json');
-        console.log(`Seu IP público é: ${response.data.ip}`);
-    } catch (error) {
-        console.error('Erro ao obter o IP público:', error);
-    }
-}
-
-getPublicIP();
+app.use(axios)
 
 app.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:${port}`);
+  console.log(`Servidor rodando em http://44.226.122.3:${port}`);
 });
